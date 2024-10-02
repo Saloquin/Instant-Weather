@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant Weather</title>
+
     <link rel="stylesheet" href="css/style.css">
-    <script defer src="js/script.js"></script>
+    <script src="https://kit.fontawesome.com/1a4ed4a819.js" crossorigin="anonymous"></script>
+    <script defer type="module" src="js/api.js"></script>
+    <script defer type="module" src="js/script.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -32,7 +36,11 @@
                         Commune
                     </label>
                     <select id="commune"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+
+
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled>Choisir une commune</option>
+
                     </select>
                 </div>
 
@@ -90,6 +98,11 @@
                     <div class="md:w-1/3"></div>
                     <div class="md:w-2/3">
                         <button
+
+
+                            id="submit"
+
+
                             class="shadow bg-teal-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                             type="submit">
                             Envoyer
@@ -101,15 +114,58 @@
             </form>
         </div>
 
-        <h1 class="my-6 font-bold">Prévisions Météorologiques</h1>
-        <div id="weather-card" class="ombre bg-white rounded px-8 pt-6 pb-8 mb-4 ">
-            <p> température minimale : <span class="temp_min"></span></p>
-            <p> température maximale : <span class="temp_max"></span></p>
-            <p> probabilité de pluie : <span class="proba_pluie"></span></p>
-            <p> temps d'ensoleillement : <span class="ensoleiment"></span></p>
+
+        <h1>Prévisions Météorologiques</h1>
+        
+
+        <div class="bg-gradient-to-b from-blue-600 to-blue-200 text-white rounded-lg p-4 sm:w-[70%] md:w-96  shadow-lg">
+            
+            <div class="text-center font-bold text-lg mb-2 font-medium"><p><span id="lieu"></span> - <span id="date"></span></p></div>
+            
+            
+            <div class="flex items-center  mb-4">
+                
+                <img src="" alt="temps du jour" class="mr-6">
+                <div class="flex flex-col text-lg mb-4">
+                    <p  id='temps' class="ml-4 text-lg font-medium"></p>
+                    <p>T min : <span id="temp_min" class="font-medium"></span> °C</p>
+                    <p>T max : <span id="temp_max" class="font-medium"></span> °C</p>
+                </div>
+                
+            </div>
+    
+           
+            <div class="text-sm bg-white p-4 rounded-lg shadow-md">
+                <div class="grid md:grid-cols-2 gap-2">
+                    <div class="text-sky-700 font-medium">
+                        <p><i class="fa-solid fa-sun"></i> Ensoleillement : <span id="ensoleiment"></span> h </p>
+                    </div>
+                    <div class="text-sky-700 font-medium">
+                        <p><i class="fa-solid fa-droplet"></i> Probabilité de pluie : <span id="proba_pluie"></span>%</p>
+                    </div>
+            
+                    <div class="text-sky-700 font-medium">
+                        <p><i class="fa-solid fa-compass"></i> Latitude : <span id="latitude_info"></span></p>
+                    </div>
+                    <div class="text-sky-700 font-medium">
+                        <p><i class="fa-solid fa-compass"></i> Longitude : <span id="longitude_info"></span></p>
+                    </div>
+            
+                    <div class=" text-sky-700 font-medium">
+                        <p>Direction du vent : <span id="dir_vent_info"></span>° <i class="fa-solid fa-wind"></i></p>
+                    </div>
+                    <div class="text-sky-700 font-medium">
+                        <p><i class="fa-solid fa-droplet"></i> Cumul pluie : <span id="pluie_info"></span> mm</p>
+                    </div>
+                    
+                </div>
+                <div class="text-sky-700 font-medium colspan-2 mt-2 item-center justify-center flex">
+                    <p>Vent moyen (10m) : <span id="vent_info"></span> km/h <i class="fa-solid fa-wind"></i></p>
+                </div>
+            </div>
+            
+
         </div>
-
-
 
 
     </div>
