@@ -8,7 +8,7 @@ export const getCommunes = async (codepostal) =>{
     return data;
 }
 
-const fetchMeteoByCommune = async (commune) => {
+export const fetchMeteoByCommune = async (commune) => {
     const response = await fetch(`${API_METEO_URL}token=${TOKEN}&insee=${commune}`);
     const data = await response.json();
     return data;
