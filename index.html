@@ -7,7 +7,7 @@
     <title>Instant Weather</title>
     <link rel="stylesheet" href="css/styles.css">
     <script defer type="module" src="js/api.js"></script>
-    <script  defer type="module" src="js/script.js"></script>
+    <script defer type="module" src="js/script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
@@ -32,9 +32,9 @@
                     <label class="block text-gray-700 text-sm font-bold mb-2">
                         commune
                     </label>
-                    <select
-                    id="commune"
-                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    <select id="commune"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                        <option selected disabled>Choisir une commune</option>
                     </select>
                 </div>
 
@@ -42,7 +42,6 @@
                     <div class="md:w-1/3"></div>
                     <div class="md:w-2/3">
                         <button
-
                             class="shadow bg-teal-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                             type="button">
                             Envoyer
@@ -56,10 +55,10 @@
 
         <h1>Prévisions Météorologiques</h1>
         <div id="weather-card" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 ">
-            <p > température minimale : <span class="temp_min"></span></p>
-            <p > température maximale : <span class="temp_max"></span></p>
-            <p > probabilité de pluie : <span class="proba_pluie"></span></p>
-            <p > temps d'ensoleillement : <span class="ensoleiment"></span></p>
+            <p> température minimale : <span class="temp_min"></span></p>
+            <p> température maximale : <span class="temp_max"></span></p>
+            <p> probabilité de pluie : <span class="proba_pluie"></span></p>
+            <p> temps d'ensoleillement : <span class="ensoleiment"></span></p>
         </div>
 
 
