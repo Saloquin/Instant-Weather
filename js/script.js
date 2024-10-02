@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         commune.innerHTML = '';
         commune.innerHTML = '<option selected disabled >Sélectionner une commune</option>';
 
-        if(!codepostal || codepostal.length !== 5){
+        if (!codepostal || codepostal.length !== 5) {
             return;
         }
-        
+
         getCommunes(codepostal).then(data => {
 
             // Add new options
@@ -39,12 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const insee = commune.value;
         fetchMeteoByCommune(insee).then(data => {
             console.log(data);
-           const informations = data.forecast;
+            const informations = data.forecast;
 
-              tempMinElement.innerHTML = informations.tmin;
-                tempMaxElement.innerHTML = informations.tmax;
-                probaPluieElement.innerHTML = informations.probarain;
-                ensoleillementElement.innerHTML = informations.sun_hours;
+            tempMinElement.innerHTML = informations.tmin;
+            tempMaxElement.innerHTML = informations.tmax;
+            probaPluieElement.innerHTML = informations.probarain;
+            ensoleillementElement.innerHTML = informations.sun_hours;
 
 
         });
