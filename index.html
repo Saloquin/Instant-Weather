@@ -1,17 +1,71 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instant Weather</title>
     <link rel="stylesheet" href="css/styles.css">
-    <script defer src="js/script.js"></script>
+    <script defer type="module" src="js/api.js"></script>
+    <script  defer type="module" src="js/script.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body>
-    <div id="weather-app">
+    <div class="flex justify-center items-center flex-col">
+        <h1 class="my-6 font-bold">Choisir une commune</h1>
+
+
+        <div class=" ">
+            <form class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 ">
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                        code postal
+                    </label>
+                    <input
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        id="cp" type="number" placeholder="Code postal">
+                </div>
+
+                <div class="mb-6">
+                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                        commune
+                    </label>
+                    <select
+                    id="commune"
+                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </select>
+                </div>
+
+                <div class="md:flex md:items-center">
+                    <div class="md:w-1/3"></div>
+                    <div class="md:w-2/3">
+                        <button
+                            id="submit"
+                            class="shadow bg-teal-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            type="button">
+                            Envoyer
+                        </button>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+
         <h1>Prévisions Météorologiques</h1>
-        <h2 class="text-3xl text-red-500">Coucou l'équipe</h2>
+        <div id="weather-card" class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4 ">
+            <p > température minimale : <span id="temp_min"></span></p>
+            <p > température maximale : <span id="temp_max"></span></p>
+            <p > probabilité de pluie : <span id="proba_pluie"></span></p>
+            <p > temps d'ensoleillement : <span id="ensoleiment"></span></p>
+        </div>
+
+
+
+
     </div>
 </body>
+
 </html>
