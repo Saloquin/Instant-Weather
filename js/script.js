@@ -9,6 +9,11 @@ const tempMinElement = document.getElementById("temp_min");
 const tempMaxElement = document.getElementById("temp_max");
 const probaPluieElement = document.getElementById("proba_pluie");
 const ensoleillementElement = document.getElementById("ensoleiment");
+const latitudeElement = document.getElementById("latitude_info");
+const longitudeElement = document.getElementById("longitude_info");
+const directionVent = document.getElementById("dir_vent_info");
+const vitesseVent = document.getElementById("vent_info");
+const cumulPluie = document.getElementById("pluie_info");
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -45,6 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
             tempMaxElement.innerHTML = informations.tmax;
             probaPluieElement.innerHTML = informations.probarain;
             ensoleillementElement.innerHTML = informations.sun_hours;
+            latitudeElement.innerHTML = informations.latitude;
+            longitudeElement.innerHTML = informations.longitude;
+            directionVent.innerHTML = informations.dirwind10m;
+            vitesseVent.innerHTML = informations.wind10m;
+            cumulPluie.innerHTML = informations.rr10;
 
 
         });
