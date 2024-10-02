@@ -1,3 +1,5 @@
+import { getCommunes } from './api.js';
+
 const codePostale = document.getElementById('cp');
 const commune = document.getElementById('commune');
 
@@ -5,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     codePostale.addEventListener("blur", async function () {
         const codepostal = this.value;
+        console.log(codepostal);
         getCommunes(codepostal).then(data => {
             // Clear the select options
             commune.innerHTML = '';
