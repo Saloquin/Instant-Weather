@@ -20,8 +20,6 @@ console.log('API loaded');
 
 /*
 const reponse = getCommunes(14210).then(data => {
-    fetchMeteoByCommune(data[0].code).then(data => {
-        console.log(data);
-    });
+    console.log(data);
 });
 */
