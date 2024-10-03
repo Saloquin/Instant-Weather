@@ -14,6 +14,8 @@ const longitudeElement = document.getElementById("longitude_info");
 const directionVent = document.getElementById("dir_vent_info");
 const vitesseVent = document.getElementById("vent_info");
 const cumulPluie = document.getElementById("pluie_info");
+const lieu = document.getElementById("lieu");
+const date = document.getElementById("date");
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -53,6 +55,7 @@ document.getElementById('submit').addEventListener('click', function () {
         alert(`Le nombre de jour ne doit pas dépasser ${maxValue}. et tout les champs doivent être remplit`);
     } else {
         remplir();
+        updateVisibility();
     }
 });
 
@@ -63,30 +66,20 @@ function remplir() {
         console.log(data);
         const informations = data.forecast;
 
-        tempMinElement.innerHTML = informations.tmin;
-        tempMaxElement.innerHTML = informations.tmax;
-        probaPluieElement.innerHTML = informations.probarain;
-        ensoleillementElement.innerHTML = informations.sun_hours;
-        longitudeElement.innerHTML = informations.longitude;
-        latitudeElement.innerHTML = informations.latitude;
-        directionVent.innerHTML = informations.dirwind10m;
-        vitesseVent.innerHTML = informations.wind10m;
-        cumulPluie.innerHTML = informations.rr10;
-        updateVisibility();
-        if ( document.getElementById('latitude').checked == false)
-            document.getElementById('lat').style.display='none';
+        const dateform = new Date(informations.datetime);
+        const formattedDate = dateform.toLocaleDateString();
 
-        if ( document.getElementById('longitude').checked == false)
-            document.getElementById('long').style.display='none';
-
-        if ( document.getElementById('cumul').checked == false)
-            document.getElementById('cumPluie').style.display='none';
-
-        if ( document.getElementById('vent').checked == false)
-            document.getElementById('ventmoy').style.display='none';
-
-        if ( document.getElementById('dir_vent').checked == false)
-            document.getElementById('dirvent').style.display='none';
+        tempMinElement.textContent = informations.tmin;
+        tempMaxElement.textContent = informations.tmax;
+        probaPluieElement.textContent = informations.probarain;
+        ensoleillementElement.textContent = informations.sun_hours;
+        longitudeElement.textContent = informations.longitude;
+        latitudeElement.textContent = informations.latitude;
+        directionVent.textContent = informations.dirwind10m;
+        vitesseVent.textContent = informations.wind10m;
+        cumulPluie.textContent = informations.rr10;
+        lieu.textContent = data.city.name;
+        date.textContent = formattedDate;
 
 
     });
@@ -96,8 +89,6 @@ function remplir() {
 };
 
 function updateVisibility() {
-    if (input.value < maxValue  && codePostale.value || commune.value != 'Sélectionner une commune')
-    // Vérifie l'état des cases à cocher et ajuste la visibilité des éléments
     document.getElementById('lat').style.display = document.getElementById('latitude').checked ? 'block' : 'none';
     document.getElementById('long').style.display = document.getElementById('longitude').checked ? 'block' : 'none';
     document.getElementById('cumPluie').style.display = document.getElementById('cumul').checked ? 'block' : 'none';
