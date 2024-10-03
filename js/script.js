@@ -40,28 +40,69 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    submit.addEventListener("click", function () {
-        const insee = commune.value;
-        fetchMeteoByCommune(insee).then(data => {
-            console.log(data);
-            const informations = data.forecast;
-
-            tempMinElement.innerHTML = informations.tmin;
-            tempMaxElement.innerHTML = informations.tmax;
-            probaPluieElement.innerHTML = informations.probarain;
-            ensoleillementElement.innerHTML = informations.sun_hours;
-            latitudeElement.innerHTML = informations.latitude;
-            longitudeElement.innerHTML = informations.longitude;
-            directionVent.innerHTML = informations.dirwind10m;
-            vitesseVent.innerHTML = informations.wind10m;
-            cumulPluie.innerHTML = informations.rr10;
 
 
-        });
 
+});
+
+document.getElementById('submit').addEventListener('click', function () {
+    const input = document.getElementById('nbjour');
+    const maxValue = 7;
+
+    if (input.value > maxValue || !codePostale.value || commune.value == 'Sélectionner une commune') {
+        alert(`Le nombre de jour ne doit pas dépasser ${maxValue}. et tout les champs doivent être remplit`);
+    } else {
+        remplir();
+    }
+});
+
+
+function remplir() {
+    const insee = commune.value;
+    fetchMeteoByCommune(insee).then(data => {
+        console.log(data);
+        const informations = data.forecast;
+
+        tempMinElement.innerHTML = informations.tmin;
+        tempMaxElement.innerHTML = informations.tmax;
+        probaPluieElement.innerHTML = informations.probarain;
+        ensoleillementElement.innerHTML = informations.sun_hours;
+        longitudeElement.innerHTML = informations.longitude;
+        latitudeElement.innerHTML = informations.latitude;
+        directionVent.innerHTML = informations.dirwind10m;
+        vitesseVent.innerHTML = informations.wind10m;
+        cumulPluie.innerHTML = informations.rr10;
+        updateVisibility();
+        if ( document.getElementById('latitude').checked == false)
+            document.getElementById('lat').style.display='none';
+
+        if ( document.getElementById('longitude').checked == false)
+            document.getElementById('long').style.display='none';
+
+        if ( document.getElementById('cumul').checked == false)
+            document.getElementById('cumPluie').style.display='none';
+
+        if ( document.getElementById('vent').checked == false)
+            document.getElementById('ventmoy').style.display='none';
+
+        if ( document.getElementById('dir_vent').checked == false)
+            document.getElementById('dirvent').style.display='none';
 
 
     });
 
 
-});
+
+};
+
+function updateVisibility() {
+    if (input.value < maxValue  && codePostale.value || commune.value != 'Sélectionner une commune')
+    // Vérifie l'état des cases à cocher et ajuste la visibilité des éléments
+    document.getElementById('lat').style.display = document.getElementById('latitude').checked ? 'block' : 'none';
+    document.getElementById('long').style.display = document.getElementById('longitude').checked ? 'block' : 'none';
+    document.getElementById('cumPluie').style.display = document.getElementById('cumul').checked ? 'block' : 'none';
+    document.getElementById('ventmoy').style.display = document.getElementById('vent').checked ? 'block' : 'none';
+    document.getElementById('dirvent').style.display = document.getElementById('dir_vent').checked ? 'block' : 'none';
+}
+
+
