@@ -20,7 +20,7 @@
 
 
         <div>
-            <form class="ombre bg-white rounded px-8 pt-6 pb-8 mb-4 ">
+            <form class="ombre bg-white rounded px-10 pt-6 pb-8 mb-4 ">
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">
@@ -50,7 +50,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="nbjour" type="number" max="7" value="41">
+                        id="nbjour" type="number" max="7" value="1">
                 </div>
 
 
@@ -70,13 +70,13 @@
                 </div>
                 <div class="md:flex md:items-center mb-6">
                     <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input id="cumul" class="mr-2 leading-tight" type="checkbox">
+                        <input id="cumul" class="mr-1 leading-tight" type="checkbox">
                         <span class="text-sm">
                             cumul pluie
                         </span>
                     </label>
                     <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input id="vent" class="mr-2 leading-tight" type="checkbox">
+                        <input id="vent" class="mr-1 leading-tight" type="checkbox">
                         <span class="text-sm">
                             Vent moyen
                         </span>
@@ -103,8 +103,8 @@
                             id="submit"
 
 
-                            class="shadow bg-teal-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                            type="submit">
+                            class="shadow bg-teal-500 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            type="button">
                             Envoyer
                         </button>
                     </div>
@@ -118,7 +118,7 @@
         <h1>Prévisions Météorologiques</h1>
         
 
-        <div class="bg-gradient-to-b from-blue-600 to-blue-200 text-white rounded-lg p-4 sm:w-[70%] md:w-96  shadow-lg">
+        <div class="bg-gradient-to-b from-blue-600 to-blue-200 text-white rounded-lg p-4 sm:w-[70%] md:w-[30%]  shadow-lg">
             
             <div class="text-center font-bold text-lg mb-2 font-medium"><p><span id="lieu"></span> - <span id="date"></span></p></div>
             
@@ -138,29 +138,29 @@
             <div class="text-sm bg-white p-4 rounded-lg shadow-md">
                 <div class="grid md:grid-cols-2 gap-2">
                     <div class="text-sky-700 font-medium">
-                        <p><i class="fa-solid fa-sun"></i> Ensoleillement : <span id="ensoleiment"></span> h </p>
+                        <p ><i class="fa-solid fa-sun"></i> Ensoleillement : <span id="ensoleiment"></span> h </p>
                     </div>
                     <div class="text-sky-700 font-medium">
-                        <p><i class="fa-solid fa-droplet"></i> Probabilité de pluie : <span id="proba_pluie"></span>%</p>
+                        <p ><i class="fa-solid fa-droplet"></i> Probabilité de pluie : <span id="proba_pluie"></span>%</p>
                     </div>
             
                     <div class="text-sky-700 font-medium">
-                        <p><i class="fa-solid fa-compass"></i> Latitude : <span id="latitude_info"></span></p>
+                        <p id='lat'><i class="fa-solid fa-compass"></i> Latitude : <span id="latitude_info"></span></p>
                     </div>
                     <div class="text-sky-700 font-medium">
-                        <p><i class="fa-solid fa-compass"></i> Longitude : <span id="longitude_info"></span></p>
+                        <p id='long'><i class="fa-solid fa-compass"></i> Longitude : <span id="longitude_info"></span></p>
                     </div>
             
                     <div class=" text-sky-700 font-medium">
-                        <p>Direction du vent : <span id="dir_vent_info"></span>° <i class="fa-solid fa-wind"></i></p>
+                        <p id='dirvent'>Direction du vent : <span id="dir_vent_info"></span>° <i class="fa-solid fa-wind"></i></p>
                     </div>
                     <div class="text-sky-700 font-medium">
-                        <p><i class="fa-solid fa-droplet"></i> Cumul pluie : <span id="pluie_info"></span> mm</p>
+                        <p id='cumPluie'><i class="fa-solid fa-droplet"></i> Cumul pluie : <span id="pluie_info"></span> mm</p>
                     </div>
                     
                 </div>
                 <div class="text-sky-700 font-medium colspan-2 mt-2 item-center justify-center flex">
-                    <p>Vent moyen (10m) : <span id="vent_info"></span> km/h <i class="fa-solid fa-wind"></i></p>
+                    <p id='ventmoy'>Vent moyen (10m) : <span id="vent_info"></span> km/h <i class="fa-solid fa-wind"></i></p>
                 </div>
             </div>
             
