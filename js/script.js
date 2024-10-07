@@ -185,7 +185,7 @@ function updateTheme() {
         body.classList.add('day');
         body.classList.remove('night');
         removeStars(); // Supprime toutes les étoiles
-        cloudInterval = setInterval(createCloud, 0); // Crée des nuages le jour
+        cloudInterval = setInterval(createCloud, 300); // Crée des nuages le jour
     }
 }
 
