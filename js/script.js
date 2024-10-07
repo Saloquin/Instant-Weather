@@ -1,21 +1,14 @@
 import { getCommunes, fetchMeteoByCommune } from './api.js';
+import { generateCard } from './generator.js';
 
+
+// Initialisation des variables
 const codePostale = document.getElementById('cp');
 const commune = document.getElementById('commune');
-const submit = document.getElementById('submit');
+let cardNode = document.getElementById("cardNode");
 
-//informations méteo 
-const tempMinElement = document.getElementById("temp_min");
-const tempMaxElement = document.getElementById("temp_max");
-const probaPluieElement = document.getElementById("proba_pluie");
-const ensoleillementElement = document.getElementById("ensoleiment");
-const latitudeElement = document.getElementById("latitude_info");
-const longitudeElement = document.getElementById("longitude_info");
-const directionVent = document.getElementById("dir_vent_info");
-const vitesseVent = document.getElementById("vent_info");
-const cumulPluie = document.getElementById("pluie_info");
-const lieu = document.getElementById("lieu");
-const date = document.getElementById("date");
+//initialisation des checkbox dans le localstorage
+const checkboxes = ['latitude', 'longitude', 'cumul', 'vent', 'dir_vent'];
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -41,9 +34,20 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-
-
-
+    checkboxes.forEach(id => {
+        const checkbox = document.getElementById(id);
+        if(!localStorage.getItem(id)) {
+            localStorage.setItem(id, checkbox.checked);
+        }
+        else{
+            checkbox.checked = localStorage.getItem(id) === 'true';
+        }
+        checkbox.addEventListener('change', () => {
+            localStorage.setItem(id, checkbox.checked);
+        });
+    });
+    
+    
 
 });
 
@@ -54,46 +58,27 @@ document.getElementById('submit').addEventListener('click', function () {
     if (input.value > maxValue || !codePostale.value || commune.value == 'Sélectionner une commune') {
         alert(`Le nombre de jour ne doit pas dépasser ${maxValue}. et tout les champs doivent être remplit`);
     } else {
-        remplir();
-        updateVisibility();
+        remplir(input.value);
     }
 });
 
 
-function remplir() {
+function remplir(jours) {
     const insee = commune.value;
     fetchMeteoByCommune(insee).then(data => {
-        console.log(data);
-        const informations = data.forecast;
-
-        const dateform = new Date(informations.datetime);
-        const formattedDate = dateform.toLocaleDateString();
-
-        tempMinElement.textContent = informations.tmin;
-        tempMaxElement.textContent = informations.tmax;
-        probaPluieElement.textContent = informations.probarain;
-        ensoleillementElement.textContent = informations.sun_hours;
-        longitudeElement.textContent = informations.longitude;
-        latitudeElement.textContent = informations.latitude;
-        directionVent.textContent = informations.dirwind10m;
-        vitesseVent.textContent = informations.wind10m;
-        cumulPluie.textContent = informations.rr10;
-        lieu.textContent = data.city.name;
-        date.textContent = formattedDate;
-
-
+        cardNode.innerHTML = '';
+        for (let i = 0; i < jours; i++) {
+            const card = generateCard(data.city, data.forecast[i]);
+            const newCard = document.createElement('div');
+            newCard.className = "flex w-1/3 gap-2 justify-center items-center";
+            newCard.innerHTML = card;
+            cardNode.appendChild(newCard);
+        }
     });
 
 
 
 };
 
-function updateVisibility() {
-    document.getElementById('lat').style.display = document.getElementById('latitude').checked ? 'block' : 'none';
-    document.getElementById('long').style.display = document.getElementById('longitude').checked ? 'block' : 'none';
-    document.getElementById('cumPluie').style.display = document.getElementById('cumul').checked ? 'block' : 'none';
-    document.getElementById('ventmoy').style.display = document.getElementById('vent').checked ? 'block' : 'none';
-    document.getElementById('dirvent').style.display = document.getElementById('dir_vent').checked ? 'block' : 'none';
-}
 
 
