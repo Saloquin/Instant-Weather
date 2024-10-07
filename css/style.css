@@ -38,3 +38,93 @@
   button:hover::before {
     transform: translate3d(-50%, 50%, 0) scale3d(15, 15, 15);
   }
+
+  body {
+    overflow: hidden; 
+    margin: 0;
+}
+
+body > div {
+  position: relative; /* Permet d'utiliser z-index sur les éléments enfants */
+  z-index: 1; /* Définit un z-index pour que ces éléments soient au-dessus des nuages */
+}
+.clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index:"0"; /* Les nuages ne doivent pas interférer avec les clics */
+}
+
+.cloud {
+  position: absolute;
+  background-size: contain; /* Ajuste l'image à la taille du nuage */
+  background-repeat: no-repeat; /* Empêche la répétition de l'image */
+  opacity: 0.8;
+  animation: moveClouds linear infinite;
+  z-index: -1; /* Assure qu'ils sont derrière le contenu */
+  border-radius: 50%; /* Ajoute des coins arrondis */
+}
+
+
+
+@keyframes moveClouds {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100vw); /* Déplace les nuages hors de l'écran */
+    }
+}
+
+
+
+
+.day {
+  background-color: #87CEEB;
+}
+
+.night {
+  background: #001f3f; /* Fond de nuit */
+  position: relative; /* Pour que les étoiles filantes s'affichent correctement */
+}
+
+.night h1{
+  color: white;
+}
+
+.stars {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent; /* Les étoiles seront ajoutées via JS */
+  z-index: 1; /* Pour que les étoiles soient derrière le contenu */
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  animation: twinkle 1.5s infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+
+
+@keyframes shooting-star {
+  0% {
+      transform: translate(-50px, 0); /* Commence légèrement à gauche */
+      opacity: 1;
+  }
+  100% {
+      transform: translate(100vw, 100vh); /* Déplace en bas à droite */
+      opacity: 0; /* Fait disparaître l'étoile */
+  }
+}

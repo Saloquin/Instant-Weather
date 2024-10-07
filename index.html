@@ -15,7 +15,12 @@
 </head>
 
 <body>
-    <div class="  flex justify-center items-center flex-col">
+    <div class="clouds">
+    </div>
+    <div class="stars"></div>
+
+    
+    <div class=" flex justify-center items-center flex-col">
         <h1 class="my-6 font-bold">Choisir une commune</h1>
 
 
@@ -28,7 +33,7 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="cp" type="number" placeholder="Code postal">
+                        id="cp" type="number" min="0" placeholder="Code postal">
                 </div>
 
                 <div class="mb-6">
@@ -50,19 +55,19 @@
                     </label>
                     <input
                         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        id="nbjour" type="number" max="7" value="1">
+                        id="nbjour" type="number" min="0" max="7" value="1">
                 </div>
 
 
                 <div class="md:flex md:items-center mb-6">
                     <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input id="latitude" class="mr-2 leading-tight" type="checkbox">
+                        <input id="latitude" class="mr-1 leading-tight" type="checkbox">
                         <span class="text-sm">
                             Latitude
                         </span>
                     </label>
                     <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input id="longitude" class="mr-2 leading-tight" type="checkbox">
+                        <input id="longitude" class="mr-1 leading-tight" type="checkbox">
                         <span class="text-sm">
                             Longitude
                         </span>
@@ -86,7 +91,7 @@
 
                 <div class="md:flex md:items-center mb-6">
                     <label class="md:w-2/3 block text-gray-500 font-bold">
-                        <input id="dir_vent" class="mr-2 leading-tight" type="checkbox">
+                        <input id="dir_vent" class="mr-1 leading-tight" type="checkbox">
                         <span class="text-sm">
                             direction vent
                         </span>
@@ -115,7 +120,7 @@
         </div>
 
 
-        <h1>Prévisions Météorologiques</h1>
+        <h1 class="my-6 font-bold" >Prévisions Météorologiques</h1>
         
 
         <div class="bg-gradient-to-b from-blue-600 to-blue-200 text-white rounded-lg p-4 sm:w-[70%] md:w-[30%]  shadow-lg">
@@ -123,9 +128,9 @@
             <div class="text-center font-bold text-lg mb-2 font-medium"><p><span id="lieu"></span> - <span id="date"></span></p></div>
             
             
-            <div class="flex items-center  mb-4">
+            <div class="flex items-center mb-4">
                 
-                <img src="" alt="temps du jour" class="mr-6">
+                <img src="" alt="temps du jour" class="mr-24">
                 <div class="flex flex-col text-lg mb-4">
                     <p  id='temps' class="ml-4 text-lg font-medium"></p>
                     <p>T min : <span id="temp_min" class="font-medium"></span> °C</p>
