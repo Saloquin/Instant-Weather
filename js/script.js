@@ -16,6 +16,7 @@ const vitesseVent = document.getElementById("vent_info");
 const cumulPluie = document.getElementById("pluie_info");
 const lieu = document.getElementById("lieu");
 const date = document.getElementById("date");
+const imageMeteo = document.getElementById("imageMeteo");
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -80,7 +81,7 @@ function remplir() {
         cumulPluie.textContent = informations.rr10;
         lieu.textContent = data.city.name;
         date.textContent = formattedDate;
-
+        getImageWeather(informations.weather);
 
     });
 
@@ -94,6 +95,39 @@ function updateVisibility() {
     document.getElementById('cumPluie').style.display = document.getElementById('cumul').checked ? 'block' : 'none';
     document.getElementById('ventmoy').style.display = document.getElementById('vent').checked ? 'block' : 'none';
     document.getElementById('dirvent').style.display = document.getElementById('dir_vent').checked ? 'block' : 'none';
+}
+
+function getImageWeather(meteo){
+    if(meteo >= 100 && meteo <= 138){
+        imageMeteo.src = "assets/orage.png";
+    }
+    else if(meteo == 20 || meteo == 60){
+        imageMeteo.src = "assets/pluie_parti_enso.png";
+    }
+    else if((meteo >= 20 && meteo <= 22) || (meteo >= 220 && meteo <= 235)){
+        imageMeteo.src = "assets/neige.png";
+    }
+    else if(meteo >= 60 && meteo <= 68){
+        imageMeteo.src = "assets/neige.png";
+    }
+    else if(meteo == 0){
+        imageMeteo.src = "assets/soleil.png";
+    }
+    else if (meteo >= 1 && meteo <= 7){
+        imageMeteo.src = "assets/nuageux_parti_enso.png"
+    }
+    else if(meteo == 10 || meteo == 13 || meteo == 40 || meteo == 43 || meteo == 46 ||meteo == 70 || meteo == 73 || meteo == 76 || meteo == 210){
+        imageMeteo.src = "assets/pluie_parti_enso.png"
+    }
+    else if(meteo == 11 || meteo == 14 || meteo == 41 ||meteo == 44 ||meteo == 47 || meteo == 71 || meteo == 74 || meteo == 77 || meteo == 211){
+        imageMeteo.src = "assets/pluie_vent.png"
+    }
+    else if(meteo == 12 || meteo == 15 ||meteo == 42 || meteo == 45 || meteo == 48 ||meteo == 72 || meteo == 75 || meteo == 78 || meteo == 212){
+        imageMeteo.src = "assets/grossepluie.png"
+    }
+    else{
+        imageMeteo.src = "assets/vent.png"
+    }
 }
 
 
