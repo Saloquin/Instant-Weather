@@ -75,7 +75,7 @@ function remplir(jours) {
         for (let i = 0; i < jours; i++) {
             const card = generateCard(data.city, data.forecast[i]);
             const newCard = document.createElement('div');
-            newCard.className = "flex w-1/3 gap-2 justify-center items-center";
+            newCard.className = "flex gap-2 justify-center items-center sm:p-2";
             newCard.innerHTML = card;
             cardNode.appendChild(newCard);
 
