@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const codepostal = this.value;
 
         commune.innerHTML = '';
-        commune.innerHTML = '<option selected disabled >Sélectionner une commune</option>';
+        commune.innerHTML = '<option selected disabled >Choisir une commune</option>';
 
         if (!codepostal || codepostal.length !== 5) {
             return;
