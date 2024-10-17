@@ -40,18 +40,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     checkboxes.forEach(id => {
         const checkbox = document.getElementById(id);
-        if(!localStorage.getItem(id)) {
+        if (!localStorage.getItem(id)) {
             localStorage.setItem(id, checkbox.checked);
         }
-        else{
+        else {
             checkbox.checked = localStorage.getItem(id) === 'true';
         }
         checkbox.addEventListener('change', () => {
             localStorage.setItem(id, checkbox.checked);
         });
     });
-    
-    
+
+
 
 });
 
@@ -78,7 +78,9 @@ function remplir(jours) {
             newCard.className = "flex w-1/3 gap-2 justify-center items-center";
             newCard.innerHTML = card;
             cardNode.appendChild(newCard);
+
         }
+
 
     });
 
@@ -87,62 +89,52 @@ function remplir(jours) {
 };
 
 
-function getImageWeather(meteo){
-    if(meteo >= 100 && meteo <= 138){
-        imageMeteo.src = "assets/orage.png";
-    }
-    else if(meteo == 20 || meteo == 60){
-        imageMeteo.src = "assets/pluie_parti_enso.png";
-    }
-    else if((meteo >= 20 && meteo <= 22) || (meteo >= 220 && meteo <= 235)){
-        imageMeteo.src = "assets/neige.png";
-    }
-    else if(meteo >= 60 && meteo <= 68){
-        imageMeteo.src = "assets/neige.png";
-    }
-    else if(meteo == 0){
-        imageMeteo.src = "assets/soleil.png";
-    }
-    else if (meteo >= 1 && meteo <= 7){
-        imageMeteo.src = "assets/nuageux_parti_enso.png"
-    }
-    else if(meteo == 10 || meteo == 13 || meteo == 40 || meteo == 43 || meteo == 46 ||meteo == 70 || meteo == 73 || meteo == 76 || meteo == 210){
-        imageMeteo.src = "assets/pluie_parti_enso.png"
-    }
-    else if(meteo == 11 || meteo == 14 || meteo == 41 ||meteo == 44 ||meteo == 47 || meteo == 71 || meteo == 74 || meteo == 77 || meteo == 211){
-        imageMeteo.src = "assets/pluie_vent.png"
-    }
-    else if(meteo == 12 || meteo == 15 ||meteo == 42 || meteo == 45 || meteo == 48 ||meteo == 72 || meteo == 75 || meteo == 78 || meteo == 212){
-        imageMeteo.src = "assets/grossepluie.png"
-    }
-    else{
-        imageMeteo.src = "assets/vent.png"
-    }
-}
+
 
 const cloudsContainer = document.querySelector('.clouds');
-const MAX_CLOUDS = 10; // Limite le nombre de nuages
+const MAX_CLOUDS = 100; // Limite le nombre de nuages
 let cloudCount = 0; // Compteur de nuages
 
 function createCloud() {
     if (cloudCount < MAX_CLOUDS) {
         const cloud = document.createElement('div');
         cloud.classList.add('cloud');
-        let proba =Math.random() 
-        let isBunnyCloud = proba < 0.05; 
-        let iscamouCloud = proba < 0.001;
-        if (iscamouCloud) {
-            cloud.style.backgroundImage = "url('asset/camou.png')";
-            cloud.style.width = '90px'; 
-            cloud.style.height = '90px'; 
-        }else if (isBunnyCloud) {
-            cloud.style.backgroundImage = "url('asset/lapin.png')";
-            cloud.style.width = '150px'; 
-            cloud.style.height = '100px'; 
-        } else {
+        let proba = Math.random()
+        let isLelyan = proba < 0.2;
+        let isAlix = proba < 0.4;
+        let isClement = proba <0.6;
+        let isCadiou = proba <0.8;
+        let isCam = proba < 1;
+        if (isLelyan) {
+            cloud.style.backgroundImage = "url('assets/lelyan.jpeg')";
+            cloud.style.width = '90px';
+            cloud.style.height = '90px';
+        }
+        else if (isAlix) {
+            cloud.style.backgroundImage = "url('assets/alix.jpeg')";
+            cloud.style.width = '150px';
+            cloud.style.height = '100px';
+        }
+        else if (isClement) {
+            cloud.style.backgroundImage = "url('assets/clement.JPG')";
+            cloud.style.width = '150px';
+            cloud.style.height = '100px';
+        }
+        else if (isCadiou) {
+            cloud.style.backgroundImage = "url('assets/cadiou.jpeg')";
+            cloud.style.width = '150px';
+            cloud.style.height = '100px';
+        }
+        else if (isCam) {
+            cloud.style.backgroundImage = "url('assets/cam.jpg')";
+            cloud.style.width = '150px';
+            cloud.style.height = '100px';
+        } 
+
+        else {
             cloud.style.width = Math.random() * 200 + 100 + 'px';
             cloud.style.height = Math.random() * 100 + 50 + 'px';
-            cloud.style.background = 'white'; 
+            cloud.style.background = 'white';
         }
 
         cloud.style.left = '-200px'; // Commence à l'extérieur de l'écran
@@ -160,33 +152,60 @@ function createCloud() {
 }
 
 
-
-
-const currentHour = new Date().getHours();
+const toggleSwitch = document.getElementById('toggleSwitch');
 const body = document.body;
 
-if (currentHour >= 19 || currentHour < 6) {
-    body.classList.add('night');
-    body.classList.remove('day');
-    createStars();
-    setInterval(createShootingStar, 5000);
-} else {
-    body.classList.add('day');
-    body.classList.remove('night');
-    setInterval(createCloud, 3000); 
+let shootingStarInterval;
+let cloudInterval;
+
+function removeStars() {
+    const stars = document.querySelectorAll('.star');
+    stars.forEach(star => star.remove());
 }
+
+function removeClouds() {
+    const clouds = document.querySelectorAll('.cloud');
+    clouds.forEach(cloud => cloud.remove());
+}
+
+function updateTheme() {
+    // Nettoyer les intervalles existants
+    clearInterval(shootingStarInterval);
+    clearInterval(cloudInterval);
+
+    if (toggleSwitch.checked) {
+        // Mode nuit
+        body.classList.add('night');
+        body.classList.remove('day');
+        createStars();
+        shootingStarInterval = setInterval(createShootingStar, 5000);
+        removeClouds(); // Supprime les nuages la nuit
+    } else {
+        // Mode jour
+        body.classList.add('day');
+        body.classList.remove('night');
+        removeStars(); // Supprime toutes les étoiles
+        cloudInterval = setInterval(createCloud, 0); // Crée des nuages le jour
+    }
+}
+
+// Écoute les changements sur le switch
+toggleSwitch.addEventListener('change', updateTheme);
+
+// Initialiser le thème par défaut
+updateTheme();
 
 function createStars() {
     const starsContainer = document.querySelector('.stars');
-    
-    for (let i = 0; i <500; i++) { // Crée 100 étoiles
+
+    for (let i = 0; i < 500; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
-        const size = Math.random() * 3 + 1; // Taille des étoiles aléatoire
+        const size = Math.random() * 3 + 1;
         star.style.width = `${size}px`;
         star.style.height = `${size}px`;
-        star.style.left = `${Math.random() * 100}vw`; // Position horizontale aléatoire
-        star.style.top = `${Math.random() * 100}vh`; // Position verticale aléatoire
+        star.style.left = `${Math.random() * 100}vw`;
+        star.style.top = `${Math.random() * 100}vh`;
 
         starsContainer.appendChild(star);
     }
@@ -198,16 +217,30 @@ function createShootingStar() {
     shootingStar.classList.add('star');
     shootingStar.style.width = '8px';
     shootingStar.style.height = '8px';
-    shootingStar.style.left = 0;
+    shootingStar.style.left = '0';
     shootingStar.style.top = `${Math.random() * 100}vh`;
     shootingStar.style.background = 'white';
     shootingStar.style.animation = 'shooting-star 2s forwards';
     starsContainer.appendChild(shootingStar);
 
-    // Supprimer l'étoile filante après l'animation
     setTimeout(() => {
         starsContainer.removeChild(shootingStar);
-    }, 1000); // Correspond à la durée de l'animation
+    }, 1000);
 }
+
+toggleSwitch.addEventListener("click", 
+    switchMode
+);
+
+function switchMode() {
+    let moon = document.getElementById("moon");
+    if (moon.className == "moon") {
+        moon.className = "sun";
+    }
+    else {
+        moon.className = "moon";
+    }
+}
+
 
 
