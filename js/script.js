@@ -91,7 +91,7 @@ function remplir(jours) {
 
 
 
-const cloudsContainer = document.querySelector('.clouds');
+const cloudsContainer = document.querySelector('.cloudcontainer');
 const MAX_CLOUDS = 100; // Limite le nombre de nuages
 let cloudCount = 0; // Compteur de nuages
 
@@ -140,7 +140,7 @@ function createCloud() {
         cloud.style.left = '-200px'; // Commence à l'extérieur de l'écran
         cloud.style.top = Math.random() * 100 + 'vh'; // Position verticale aléatoire
         cloud.style.animationDuration = Math.random() * 20 + 10 + 's'; // Durée d'animation aléatoire
-
+        
         cloudsContainer.appendChild(cloud);
         cloudCount++;
 
