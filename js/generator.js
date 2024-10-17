@@ -17,7 +17,7 @@ export const generateCard = (city, forecast) => {
         </div>
         <div class="flex items-center mb-4">
             <img id="imageMeteo" src="${getImageWeather(informations.weather)}" alt="temps du jour" class="mr-6 rounded w-1/3">
-            <div class="flex flex-col text-lg mb-4">
+            <div class="flex flex-col text-lg mb-4 ml-16">
                 <p><span class="font-medium font-mono">${FdonneTemps(informations.weather)}</span></p>
                 <p>T min : <span id="temp_min" class="font-medium">${informations.tmin}</span> °C</p>
                 <p>T max : <span id="temp_max" class="font-medium">${informations.tmax}</span> °C</p>
