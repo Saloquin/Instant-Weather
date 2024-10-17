@@ -87,7 +87,7 @@ function remplir(jours) {
 
 
 const cloudsContainer = document.querySelector('.cloudcontainer');
-const MAX_CLOUDS = 10; // Limite le nombre de nuages
+const MAX_CLOUDS = 15; // Limite le nombre de nuages
 let cloudCount = 0; // Compteur de nuages
 
 function createCloud() {
@@ -156,7 +156,7 @@ function updateTheme() {
         body.classList.remove('night');
         removeStars(); // Supprime toutes les étoiles
         cloudCount = 0;
-        cloudInterval = setInterval(createCloud, 500); // Crée des nuages le jour
+        cloudInterval = setInterval(createCloud, 1000); // Crée des nuages le jour
     }
     
 }
