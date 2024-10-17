@@ -2,7 +2,7 @@
   box-shadow: 0 0 15px #6e6a6a;
 }
 
-button {
+#submit {
   z-index: 1;
   position: relative;
   font-size: inherit;
@@ -11,12 +11,11 @@ button {
   padding: 0.5em 1em;
   outline: none;
   border: none;
-  background-color: hsl(236, 32%, 26%);
   overflow: hidden;
   transition: color 0.4s ease-in-out;
 }
 
-button::before {
+#submit::before {
   content: '';
   z-index: -1;
   position: absolute;
@@ -31,11 +30,11 @@ button::before {
   transition: transform 0.45s ease-in-out;
 }
 
-button:hover {
+#submit:hover {
   cursor: pointer;
 }
 
-button:hover::before {
+#submit:hover::before {
   transform: translate3d(-50%, 50%, 0) scale3d(15, 15, 15);
 }
 
@@ -210,6 +209,7 @@ body {
   z-index: 100;
   position: absolute;
 }
+
 
 /*
 #toggleSwitch:hover {
@@ -422,3 +422,4 @@ body {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
 }
+

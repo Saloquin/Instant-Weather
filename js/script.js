@@ -1,5 +1,5 @@
+import { generator } from './generator.js';
 import { getCommunes, fetchMeteoByCommune } from './api.js';
-import { generateCard } from './generator.js';
 
 
 // Initialisation des variables
@@ -71,26 +71,15 @@ function remplir(jours) {
     const insee = commune.value;
     fetchMeteoByCommune(insee).then(data => {
 
-
         cardNode.innerHTML = '';
         if (data.code == 200) {
-            for (let i = 0; i < jours; i++) {
-                const card = generateCard(data.city, data.forecast[i]);
-                const newCard = document.createElement('div');
-                newCard.className = "flex gap-2 justify-center items-center p-3 sm:p-0";
-                newCard.innerHTML = card;
-                cardNode.appendChild(newCard);
-
-            }
+            generator(data.city, data.forecast, jours);
         }
-        else{
+        else {
             cardNode.innerHTML = '<div class="text-center text-red-500 text-lg font-bold">Une erreur est survenue lors de la récupération des données</div>';
         }
 
-
     });
-
-
 
 };
 
