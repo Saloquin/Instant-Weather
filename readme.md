@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Sa0loquin/Instant-Weather">
-    <img src="./assets/logo.png" alt="Logo Instant Weather" width="100" height="100">
+    <img src="./assets/logo.png" alt="Logo Instant Weather" width="300" height="300">
   </a>
 
   <h3 align="center">Instant Weather - Prévisions Météorologiques Instantanées</h3>
