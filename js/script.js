@@ -71,14 +71,20 @@ function remplir(jours) {
     const insee = commune.value;
     fetchMeteoByCommune(insee).then(data => {
 
-        cardNode.innerHTML = '';
-        for (let i = 0; i < jours; i++) {
-            const card = generateCard(data.city, data.forecast[i]);
-            const newCard = document.createElement('div');
-            newCard.className = "flex gap-2 justify-center items-center p-3 sm:p-0";
-            newCard.innerHTML = card;
-            cardNode.appendChild(newCard);
 
+        cardNode.innerHTML = '';
+        if (data.code == 200) {
+            for (let i = 0; i < jours; i++) {
+                const card = generateCard(data.city, data.forecast[i]);
+                const newCard = document.createElement('div');
+                newCard.className = "flex gap-2 justify-center items-center p-3 sm:p-0";
+                newCard.innerHTML = card;
+                cardNode.appendChild(newCard);
+
+            }
+        }
+        else{
+            cardNode.innerHTML = '<div class="text-center text-red-500 text-lg font-bold">Une erreur est survenue lors de la récupération des données</div>';
         }
 
 
@@ -102,8 +108,8 @@ function createCloud() {
         let proba = Math.random()
         let isLelyan = proba < 0.2;
         let isAlix = proba < 0.4;
-        let isClement = proba <0.6;
-        let isCadiou = proba <0.8;
+        let isClement = proba < 0.6;
+        let isCadiou = proba < 0.8;
         let isCam = proba < 1;
         if (isLelyan) {
             cloud.style.backgroundImage = "url('assets/lelyan.jpeg')";
@@ -129,7 +135,7 @@ function createCloud() {
             cloud.style.backgroundImage = "url('assets/cam.jpg')";
             cloud.style.width = '150px';
             cloud.style.height = '100px';
-        } 
+        }
 
         else {
             cloud.style.width = Math.random() * 200 + 100 + 'px';
@@ -228,7 +234,7 @@ function createShootingStar() {
     }, 1000);
 }
 
-toggleSwitch.addEventListener("click", 
+toggleSwitch.addEventListener("click",
     switchMode
 );
 
