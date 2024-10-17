@@ -3,6 +3,7 @@ import { generateCard } from "./generatorCard.js";
 export const generator = (city, forecast, jours) => {
     let cards = [];
 
+
     for (let i = 0; i < jours; i++) {
         const card = generateCard(city, forecast[i]);
         cards.push(card);
@@ -25,6 +26,7 @@ export const generator = (city, forecast, jours) => {
         <div class="relative h-56 rounded-lg md:h-96">
             <!-- Items -->
             ${carouselItems}
+
         </div>
         <!-- Slider controls -->
         <button type="button" class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev id="preview">
@@ -60,6 +62,7 @@ export const generator = (city, forecast, jours) => {
         carouselItemsElements[currentIndex].classList.remove('hidden');
     }
 
+
     console.log('carouselItemsElements', carouselItemsElements);
     document.getElementById('preview').addEventListener('click', () => {
         console.log('preview');
@@ -79,3 +82,7 @@ export const generator = (city, forecast, jours) => {
     });
     return carouselHTML;
 }
+
+
+
+

@@ -86,8 +86,8 @@ function remplir(jours) {
 
 
 
-const cloudsContainer = document.querySelector('.clouds');
-const MAX_CLOUDS = 100; // Limite le nombre de nuages
+const cloudsContainer = document.querySelector('.cloudcontainer');
+const MAX_CLOUDS = 10; // Limite le nombre de nuages
 let cloudCount = 0; // Compteur de nuages
 
 function createCloud() {
@@ -95,37 +95,12 @@ function createCloud() {
         const cloud = document.createElement('div');
         cloud.classList.add('cloud');
         let proba = Math.random()
-        let isLelyan = proba < 0.2;
-        let isAlix = proba < 0.4;
-        let isClement = proba < 0.6;
-        let isCadiou = proba < 0.8;
-        let isCam = proba < 1;
-        if (isLelyan) {
-            cloud.style.backgroundImage = "url('assets/lelyan.jpeg')";
+        let isLapin = proba < 0.05;
+        if (isLapin) {
+            cloud.style.backgroundImage = "url('assets/lapin.png')";
             cloud.style.width = '90px';
             cloud.style.height = '90px';
         }
-        else if (isAlix) {
-            cloud.style.backgroundImage = "url('assets/alix.jpeg')";
-            cloud.style.width = '150px';
-            cloud.style.height = '100px';
-        }
-        else if (isClement) {
-            cloud.style.backgroundImage = "url('assets/clement.JPG')";
-            cloud.style.width = '150px';
-            cloud.style.height = '100px';
-        }
-        else if (isCadiou) {
-            cloud.style.backgroundImage = "url('assets/cadiou.jpeg')";
-            cloud.style.width = '150px';
-            cloud.style.height = '100px';
-        }
-        else if (isCam) {
-            cloud.style.backgroundImage = "url('assets/cam.jpg')";
-            cloud.style.width = '150px';
-            cloud.style.height = '100px';
-        }
-
         else {
             cloud.style.width = Math.random() * 200 + 100 + 'px';
             cloud.style.height = Math.random() * 100 + 50 + 'px';
@@ -135,7 +110,7 @@ function createCloud() {
         cloud.style.left = '-200px'; // Commence à l'extérieur de l'écran
         cloud.style.top = Math.random() * 100 + 'vh'; // Position verticale aléatoire
         cloud.style.animationDuration = Math.random() * 20 + 10 + 's'; // Durée d'animation aléatoire
-
+        
         cloudsContainer.appendChild(cloud);
         cloudCount++;
 
@@ -180,12 +155,14 @@ function updateTheme() {
         body.classList.add('day');
         body.classList.remove('night');
         removeStars(); // Supprime toutes les étoiles
-        cloudInterval = setInterval(createCloud, 300); // Crée des nuages le jour
+        cloudCount = 0;
+        cloudInterval = setInterval(createCloud, 500); // Crée des nuages le jour
     }
+    
 }
 
 // Écoute les changements sur le switch
-toggleSwitch.addEventListener('change', updateTheme);
+toggleSwitch.addEventListener('click', updateTheme);
 
 // Initialiser le thème par défaut
 updateTheme();
@@ -223,19 +200,6 @@ function createShootingStar() {
     }, 1000);
 }
 
-toggleSwitch.addEventListener("click",
-    switchMode
-);
-
-function switchMode() {
-    let moon = document.getElementById("moon");
-    if (moon.className == "moon") {
-        moon.className = "sun";
-    }
-    else {
-        moon.className = "moon";
-    }
-}
 
 
 
