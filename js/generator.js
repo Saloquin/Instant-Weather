@@ -1,32 +1,36 @@
+// Importation de la fonction generateCard depuis le fichier generatorCard.js
 import { generateCard } from "./generatorCard.js";
 
+// Fonction pour générer le carousel avec les cartes météo
 export const generator = (city, forecast, jours) => {
-    let cards = [];
+  let cards = [];
 
+  // Génération des cartes pour chaque jour
+  for (let i = 0; i < jours; i++) {
+    const card = generateCard(city, forecast[i]);
+    cards.push(card);
+  }
 
-    for (let i = 0; i < jours; i++) {
-        const card = generateCard(city, forecast[i]);
-        cards.push(card);
-    }
+  let carouselItems = "";
 
-    let carouselItems = '';
-
-    for (let i = 0; i < cards.length; i++) {
-        carouselItems += `
-        <div class="${i === 0 ? '' : 'hidden'} duration-700 ease-in-out" data-carousel-item>
+  // Création des éléments du carousel
+  for (let i = 0; i < cards.length; i++) {
+    carouselItems += `
+        <div class="${
+          i === 0 ? "" : "hidden"
+        } duration-700 ease-in-out" data-carousel-item>
             ${cards[i]}
         </div>
         `;
+  }
 
-    }
-
-    const carouselHTML = `
+  // HTML du carousel
+  const carouselHTML = `
     <div id="default-carousel" class="relative w-[100%] sm:w-[50%] p-5 pb-32" data-carousel="static">
         <!-- Carousel wrapper -->
         <div class="relative h-56 rounded-lg md:h-96">
             <!-- Items -->
             ${carouselItems}
-
         </div>
         <!-- Slider controls -->
         <button type="button" class=" align-middle absolute top-0  start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev id="preview">
@@ -48,41 +52,46 @@ export const generator = (city, forecast, jours) => {
     </div>
     `;
 
-    cardNode.innerHTML = carouselHTML;
+  // Insertion du carousel dans le DOM
+  cardNode.innerHTML = carouselHTML;
 
-    let currentIndex = 0;
-    const carouselItemsElements = document.querySelectorAll('[data-carousel-item]');
+  let currentIndex = 0;
+  const carouselItemsElements = document.querySelectorAll(
+    "[data-carousel-item]"
+  );
 
-    function switchCarouselItem(newIndex) {
-        // Hide the current item
-        carouselItemsElements[currentIndex].classList.add('hidden');
+  // Fonction pour changer l'élément du carousel affiché
+  function switchCarouselItem(newIndex) {
+    // Masquer l'élément actuel
+    carouselItemsElements[currentIndex].classList.add("hidden");
 
-        // Show the new current item
-        currentIndex = newIndex;
-        carouselItemsElements[currentIndex].classList.remove('hidden');
-    }
+    // Afficher le nouvel élément
+    currentIndex = newIndex;
+    carouselItemsElements[currentIndex].classList.remove("hidden");
+  }
 
+  console.log("carouselItemsElements", carouselItemsElements);
+  document.getElementById("preview").addEventListener("click", () => {
+    console.log("preview");
+    switchCarouselItem(
+      (currentIndex - 1 + carouselItemsElements.length) %
+        carouselItemsElements.length
+    );
+  });
 
-    console.log('carouselItemsElements', carouselItemsElements);
-    document.getElementById('preview').addEventListener('click', () => {
-        console.log('preview');
-        switchCarouselItem((currentIndex - 1 + carouselItemsElements.length) % carouselItemsElements.length);
+  document.getElementById("next").addEventListener("click", () => {
+    console.log("next");
+    switchCarouselItem((currentIndex + 1) % carouselItemsElements.length);
+  });
+
+  const carouselIndicatorsElements = document.querySelectorAll(
+    "[data-carousel-slide-to]"
+  );
+  carouselIndicatorsElements.forEach((indicator, index) => {
+    indicator.addEventListener("click", () => {
+      switchCarouselItem(index);
     });
+  });
 
-    document.getElementById('next').addEventListener('click', () => {
-        console.log('next');
-        switchCarouselItem((currentIndex + 1) % carouselItemsElements.length);
-    });
-
-    const carouselIndicatorsElements = document.querySelectorAll('[data-carousel-slide-to]');
-    carouselIndicatorsElements.forEach((indicator, index) => {
-        indicator.addEventListener('click', () => {
-            switchCarouselItem(index);
-        });
-    });
-    return carouselHTML;
-}
-
-
-
-
+  return carouselHTML;
+};
