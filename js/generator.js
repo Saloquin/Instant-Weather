@@ -70,9 +70,7 @@ export const generator = (city, forecast, jours) => {
     carouselItemsElements[currentIndex].classList.remove("hidden");
   }
 
-  console.log("carouselItemsElements", carouselItemsElements);
   document.getElementById("preview").addEventListener("click", () => {
-    console.log("preview");
     switchCarouselItem(
       (currentIndex - 1 + carouselItemsElements.length) %
         carouselItemsElements.length
@@ -80,7 +78,6 @@ export const generator = (city, forecast, jours) => {
   });
 
   document.getElementById("next").addEventListener("click", () => {
-    console.log("next");
     switchCarouselItem((currentIndex + 1) % carouselItemsElements.length);
   });
 
